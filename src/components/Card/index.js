@@ -1,16 +1,42 @@
 import React from "react";
 import propTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+import allActions from "../../actions";
+
 import * as S from "./styled";
 
-const Card = ({ image, name, classification, types }) => {
+const Card = ({
+  image,
+  name,
+  classification,
+  types,
+  evolutions,
+  weaknesses,
+  resistant,
+}) => {
+  const dispatch = useDispatch();
+  const handleHover = (e) => {
+    e.preventDefault();
+    dispatch(
+      allActions.hoverActions.onHoverCard({
+        name,
+        classification,
+        types,
+        evolutions,
+        weaknesses,
+        resistant,
+      })
+    );
+    dispatch(allActions.counterActions.increment());
+  };
   return (
     <S.CardContainer>
-      <CardActionArea>
+      <CardActionArea onMouseOver={(e) => handleHover(e)}>
         <S.CardMediaStyled
           component="img"
           alt={name}
@@ -26,9 +52,9 @@ const Card = ({ image, name, classification, types }) => {
             {classification}
           </Typography>
           {types &&
-            types.map((type, index) => (
+            types.map((type) => (
               <Typography
-                key={index}
+                key={type}
                 variant="body2"
                 color="textSecondary"
                 component="p"
@@ -52,6 +78,15 @@ Card.propTypes = {
   name: propTypes.string.isRequired,
   classification: propTypes.string.isRequired,
   types: propTypes.instanceOf(Array).isRequired,
+  evolutions: propTypes.instanceOf(Array),
+  weaknesses: propTypes.instanceOf(Array),
+  resistant: propTypes.instanceOf(Array),
+};
+
+Card.defaultProps = {
+  evolutions: [],
+  weaknesses: [],
+  resistant: [],
 };
 
 export default Card;

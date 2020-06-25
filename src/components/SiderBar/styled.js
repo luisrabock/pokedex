@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 export const ContainerDrawer = styled.div`
   overflow: auto;
   margin-top: 60px;
+  text-align: center;
 `;
 
 export const StyledDrawer = styled(Drawer)`
@@ -16,5 +17,7 @@ export const StyledButton = styled(Button)`
   min-width: 180px;
   min-height: 40px;
   margin-left: 8px;
-  background-color: #f8f7f7;
+  background-color: ${(props) =>
+    props.backcolor ? props.backcolor : "#f8f7f7"};
+  color: ${(props) => (props.backcolor ? "#fff" : "#66625c")};
 `;

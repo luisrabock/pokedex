@@ -1,5 +1,4 @@
 const setUser = (userObj) => {
-  console.log("userObj", userObj);
   return {
     type: "SET_USER",
     payload: userObj,

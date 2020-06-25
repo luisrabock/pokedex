@@ -9,6 +9,16 @@ export const GET_POKEMON = gql`
       classification
       types
       image
+      resistant
+      weaknesses
+      weight {
+        minimum
+        maximum
+      }
+      height {
+        minimum
+        maximum
+      }
       attacks {
         special {
           name
@@ -20,6 +30,7 @@ export const GET_POKEMON = gql`
         id
         number
         name
+        image
         weight {
           minimum
           maximum
@@ -45,6 +56,16 @@ export const GET_POKEMONS = gql`
       classification
       image
       types
+      resistant
+      weaknesses
+      weight {
+        minimum
+        maximum
+      }
+      height {
+        minimum
+        maximum
+      }
       attacks {
         special {
           name
@@ -56,6 +77,7 @@ export const GET_POKEMONS = gql`
         id
         number
         name
+        image
         weight {
           minimum
           maximum
