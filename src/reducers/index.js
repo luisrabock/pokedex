@@ -1,14 +1,12 @@
 import { combineReducers } from "redux";
-import currentUser from "./currentUser";
-import counter from "./counter";
 import hoverCard from "./hoverCard";
 import data from "./data";
+import modal from "./modal";
 
 const rootReducer = combineReducers({
-  currentUser,
-  counter,
   hoverCard,
   data,
+  modal,
 });
 
 export default rootReducer;

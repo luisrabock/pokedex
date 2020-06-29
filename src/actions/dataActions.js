@@ -12,7 +12,15 @@ const setNotFound = (data) => {
   };
 };
 
+const setSinglePokemon = (data) => {
+  return {
+    type: "SET_SINGLE",
+    payload: data,
+  };
+};
+
 export default {
   setData,
   setNotFound,
+  setSinglePokemon,
 };

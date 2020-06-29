@@ -12,6 +12,11 @@ const data = (state = [], action) => {
         data: null,
         error: action.payload,
       };
+    case "SET_SINGLE":
+      return {
+        ...state,
+        single: action.payload,
+      };
     default:
       return state;
   }

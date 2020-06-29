@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_POKEMON } from "../../graphql/queries";
 
 import AtacksBar from "../Progress";
+import Spinner from "../Spinner";
 
 import * as S from "./styled";
 
@@ -18,6 +19,7 @@ const Content = () => {
 
   return (
     <S.Container>
+      {!data && <Spinner />}
       <Paper
         elevation={3}
         style={{

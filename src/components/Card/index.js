@@ -21,6 +21,7 @@ const Card = ({
   resistant,
 }) => {
   const dispatch = useDispatch();
+
   const handleHover = (e) => {
     e.preventDefault();
     dispatch(
@@ -33,49 +34,61 @@ const Card = ({
         resistant,
       })
     );
-    dispatch(allActions.counterActions.increment());
   };
+
+  const handleOpenModal = () => {
+    dispatch(allActions.dataActions.setSinglePokemon({ name, classification }));
+    dispatch(allActions.ModalActions.open());
+  };
+
   return (
-    <S.CardContainer>
-      <CardActionArea onMouseOver={(e) => handleHover(e)}>
-        <S.CardMediaStyled
-          component="img"
-          alt={name}
-          height="140"
-          image={image}
-          title={name}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h3" component="h2">
-            {name}
-          </Typography>
-          <Typography gutterBottom variant="h6" component="h2">
-            {classification}
-          </Typography>
-          {types &&
-            types.map((type) => (
-              <Typography
-                key={type}
-                variant="body2"
-                color="textSecondary"
-                component="p"
-              >
-                {type}
-              </Typography>
-            ))}
-        </CardContent>
-      </CardActionArea>
-      <S.ActionsContainer>
-        <Link to={`/pokemon/${name}`} style={{ textDecoration: "none" }}>
-          <Button size="small" color="primary" variant="contained">
-            Detalhes
+    <>
+      <S.CardContainer>
+        <CardActionArea onMouseOver={(e) => handleHover(e)}>
+          <S.CardMediaStyled
+            component="img"
+            alt={name}
+            height="140"
+            image={image}
+            title={name}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h3" component="h2">
+              {name}
+            </Typography>
+            <Typography gutterBottom variant="h6" component="h2">
+              {classification}
+            </Typography>
+            {types &&
+              types.map((type) => (
+                <Typography
+                  key={type}
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                >
+                  {type}
+                </Typography>
+              ))}
+          </CardContent>
+        </CardActionArea>
+        <S.ActionsContainer>
+          <Link to={`/pokemon/${name}`} style={{ textDecoration: "none" }}>
+            <Button size="small" color="primary" variant="contained">
+              Detalhes
+            </Button>
+          </Link>
+          <Button
+            size="small"
+            color="primary"
+            variant="contained"
+            onClick={() => handleOpenModal()}
+          >
+            Editar
           </Button>
-        </Link>
-        <Button size="small" color="primary" variant="contained">
-          Editar
-        </Button>
-      </S.ActionsContainer>
-    </S.CardContainer>
+        </S.ActionsContainer>
+      </S.CardContainer>
+    </>
   );
 };
 

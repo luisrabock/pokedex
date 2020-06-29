@@ -1,4 +1,4 @@
-const modal = (state = {}, action) => {
+const modal = (state = false, action) => {
   switch (action.type) {
     case "ON_OPEN":
       return {
