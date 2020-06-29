@@ -15,22 +15,18 @@ const Content = () => {
   const { data } = useQuery(GET_POKEMONS, {
     variables: { first: 50 },
   });
+
   const pokemonsArr = useSelector((state) => state.data);
   useEffect(() => {
-    dispatch(allActions.dataActions.setData(data));
+    if (data) dispatch(allActions.dataActions.setData(data.pokemons));
   }, [data]);
 
-  let arr = null;
-  if (pokemonsArr.data) {
-    arr = pokemonsArr.data.pokemons ? pokemonsArr.data.pokemons : null;
-    if (!arr)
-      arr = pokemonsArr.data.pokemon ? [pokemonsArr.data.pokemon] : null;
-  }
   return (
     <S.Container>
       <SearchInput />
-      {arr &&
-        arr.map((pok) => (
+      {pokemonsArr.error && <h1>Pokemon não encontrado</h1>}
+      {pokemonsArr.data &&
+        pokemonsArr.data.map((pok) => (
           <S.ContainerCard key={pok.id}>
             <Card
               image={pok.image}

@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useQuery } from "@apollo/react-hooks";
+import { useLazyQuery, useQuery } from "@apollo/react-hooks";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import useDebounce from "../../hooks/useDebounce";
-import { GET_POKEMON } from "../../graphql/queries";
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
+import Divider from "@material-ui/core/Divider";
+
+import { GET_POKEMON, GET_POKEMONS } from "../../graphql/queries";
 
 import allActions from "../../actions";
 
@@ -14,18 +17,28 @@ const Search = () => {
   const [term, setTerm] = useState("");
   const dispatch = useDispatch();
 
-  const debouncedTerm = useDebounce(term, 300);
   const handleChange = (e) => {
     setTerm(e.target.value);
   };
-  const { data } = useQuery(GET_POKEMON, {
-    variables: { name: term },
+  const { data } = useQuery(GET_POKEMONS, {
+    variables: { first: 50 },
   });
-  console.log("data", data);
 
-  useEffect(() => {
-    dispatch(allActions.dataActions.setData(data));
-  }, [debouncedTerm, data]);
+  const [handleLoadSingle, { data: single }] = useLazyQuery(GET_POKEMON, {
+    onCompleted: (pok) => {
+      if (pok.pokemon === null) {
+        dispatch(allActions.dataActions.setNotFound("Pokemon não encontrado"));
+      } else {
+        dispatch(allActions.dataActions.setData([pok.pokemon]));
+      }
+    },
+  });
+
+  const handleClean = () => {
+    dispatch(allActions.dataActions.setData(data.pokemons));
+    setTerm("");
+  };
+
   return (
     <S.SearchInput
       placeholder="Busca de pokemons"
@@ -34,9 +47,21 @@ const Search = () => {
       value={term}
       margin="normal"
       InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <SearchIcon />
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              onClick={() =>
+                handleLoadSingle({
+                  variables: { name: term },
+                })
+              }
+            >
+              <SearchIcon />
+            </IconButton>
+            <Divider />
+            <IconButton onClick={() => handleClean()}>
+              <CloseIcon />
+            </IconButton>
           </InputAdornment>
         ),
       }}

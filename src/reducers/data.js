@@ -4,6 +4,13 @@ const data = (state = [], action) => {
       return {
         ...state,
         data: action.payload,
+        error: null,
+      };
+    case "NOT_FOUND":
+      return {
+        ...state,
+        data: null,
+        error: action.payload,
       };
     default:
       return state;
