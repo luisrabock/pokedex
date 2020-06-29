@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import HomeIcon from "@material-ui/icons/Home";
+import IconButton from "@material-ui/core/IconButton";
 import { checkColorType } from "../../utils/utils";
 
 import ImageAvatar from "../ImageAvatars";
@@ -16,6 +19,13 @@ const SideBar = () => {
     <S.StyledDrawer variant="permanent">
       <S.ContainerDrawer>
         <List>
+          <S.StyledItemList>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <IconButton size="medium">
+                <HomeIcon />
+              </IconButton>
+            </Link>
+          </S.StyledItemList>
           {information.info && (
             <>
               <TitleSideBar text="NOME" />

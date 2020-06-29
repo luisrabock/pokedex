@@ -1,6 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -65,8 +66,13 @@ const Card = ({
         </CardContent>
       </CardActionArea>
       <S.ActionsContainer>
+        <Link to={`/pokemon/${name}`} style={{ textDecoration: "none" }}>
+          <Button size="small" color="primary" variant="contained">
+            Detalhes
+          </Button>
+        </Link>
         <Button size="small" color="primary" variant="contained">
-          Detalhes
+          Editar
         </Button>
       </S.ActionsContainer>
     </S.CardContainer>

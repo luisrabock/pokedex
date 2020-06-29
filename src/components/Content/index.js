@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import SearchInput from "../Search";
 import Card from "../Card/index";
+import Toaster from "../Toaster/index";
 
 import { GET_POKEMONS } from "../../graphql/queries";
 import allActions from "../../actions";
@@ -12,6 +13,7 @@ import * as S from "./styled";
 
 const Content = () => {
   const dispatch = useDispatch();
+
   const { data } = useQuery(GET_POKEMONS, {
     variables: { first: 50 },
   });
@@ -24,7 +26,9 @@ const Content = () => {
   return (
     <S.Container>
       <SearchInput />
-      {pokemonsArr.error && <h1>Pokemon não encontrado</h1>}
+      {pokemonsArr.error && (
+        <Toaster open={!!pokemonsArr.error} message="Pokemon não encontrado" />
+      )}
       {pokemonsArr.data &&
         pokemonsArr.data.map((pok) => (
           <S.ContainerCard key={pok.id}>
