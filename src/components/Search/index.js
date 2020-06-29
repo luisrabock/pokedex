@@ -24,7 +24,7 @@ const Search = () => {
     variables: { first: 50 },
   });
 
-  const [handleLoadSingle, { data: single }] = useLazyQuery(GET_POKEMON, {
+  const [handleLoadSingle] = useLazyQuery(GET_POKEMON, {
     onCompleted: (pok) => {
       if (pok.pokemon === null) {
         dispatch(allActions.dataActions.setNotFound("Pokemon não encontrado"));

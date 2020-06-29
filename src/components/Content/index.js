@@ -27,7 +27,7 @@ const Content = () => {
   const { open } = useSelector((state) => state.modal);
   useEffect(() => {
     if (data) dispatch(allActions.dataActions.setData(data.pokemons));
-  }, [data]);
+  }, [data, dispatch]);
 
   return (
     <S.Container>
