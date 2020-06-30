@@ -26,26 +26,34 @@ export const checkColorType = (type) => {
       return "#6d8f9c";
     case "NORMAL":
       return "#a39f99";
+    case "ICE":
+      return "#98d8d8";
+    case "ROCK":
+      return "#b8a038";
+    case "GHOST":
+      return "#705898";
+    case "DRAGON":
+      return "#7038f8";
     default:
       return "#a39f99";
   }
 };
 
 /*
-normal=#f8f7f7
+normal=
 figheter=
 flying=
 ground=
-rock=#b8a038
+rock=
 bug=
-ghost=#705898
+ghost=
 steel=
 fire=
 water=
 eletric=
 psic=
-ice=#98d8d8
-dragon=#7038f8
+ice=
+dragon=
 dark=#504843
 fairy=
 unknow=#f8f7f7
