@@ -38,24 +38,3 @@ export const checkColorType = (type) => {
       return "#a39f99";
   }
 };
-
-/*
-normal=
-figheter=
-flying=
-ground=
-rock=
-bug=
-ghost=
-steel=
-fire=
-water=
-eletric=
-psic=
-ice=
-dragon=
-dark=#504843
-fairy=
-unknow=#f8f7f7
-shadow=#f8f7f7
-*/

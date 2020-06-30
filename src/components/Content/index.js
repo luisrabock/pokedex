@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
 import SearchInput from "../Search";
 import Card from "../Card/index";
@@ -39,7 +40,7 @@ const Content = () => {
       {pokemonsArr.length === 0 && <Spinner />}
       {pokemonsArr.data &&
         pokemonsArr.data.map((pok) => (
-          <S.ContainerCard key={pok.id}>
+          <S.ContainerCard key={uuidv4()}>
             <Card
               image={pok.image}
               name={pok.name}
