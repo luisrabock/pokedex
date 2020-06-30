@@ -53,7 +53,7 @@ const Card = ({
             title={name}
           />
           <CardContent>
-            <Typography gutterBottom variant="h3" component="h2">
+            <Typography gutterBottom variant="h4" component="h3">
               {name}
             </Typography>
             <Typography gutterBottom variant="h6" component="h2">

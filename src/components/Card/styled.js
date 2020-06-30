@@ -4,7 +4,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
 
 export const CardContainer = styled(Card)`
-  width: 315px;
+  width: 220px;
+  height: 400px;
   margin: 30px;
   border-radius: 15;
   text-align: center;

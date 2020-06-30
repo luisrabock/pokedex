@@ -10,12 +10,12 @@ export const ContainerDrawer = styled.div`
 `;
 
 export const StyledDrawer = styled(Drawer)`
-  width: 240;
+  width: 180px;
   flex-shrink: 0;
 `;
 
 export const StyledButton = styled(Button)`
-  min-width: 180px;
+  width: 100px;
   min-height: 40px;
   margin-left: 8px;
   background-color: ${(props) =>
